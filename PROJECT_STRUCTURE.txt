@@ -1,0 +1,111 @@
+ALBERTA'S HEALTH COMPASS - PROJECT STRUCTURE
+=============================================
+
+healthcompass/
+│
+├── index.html                (256 lines)
+│   └── Main HTML structure
+│       ├── Terms & Agreement modal
+│       ├── Header with navigation
+│       ├── Hero section
+│       ├── Search interface
+│       ├── Features section
+│       ├── Footer
+│       └── Info popups (How It Works, Data Sources)
+│
+├── css/
+│   ├── main.css             (333 lines)
+│   │   └── Core Styles
+│   │       ├── Base styles & reset
+│   │       ├── Background animations
+│   │       ├── Header & navigation
+│   │       ├── Main content layout
+│   │       ├── Search box styling
+│   │       ├── Features section
+│   │       ├── Footer
+│   │       └── Responsive breakpoints
+│   │
+│   └── modals.css           (409 lines)
+│       └── Modal Styles
+│           ├── Overlay base
+│           ├── Terms & Agreement modal
+│           ├── Info popup modals
+│           ├── Data sources grid
+│           ├── How It Works steps
+│           ├── Modal footer
+│           └── Responsive modals
+│
+├── js/
+│   └── app.js               (71 lines)
+│       └── Application Logic
+│           ├── Terms acceptance
+│           ├── Info popup controls
+│           ├── Search functionality
+│           └── Event listeners
+│
+└── README.md
+    └── Documentation
+        ├── Project overview
+        ├── File organization
+        ├── Development guide
+        ├── Browser support
+        └── TODO list
+
+
+BENEFITS OF THIS STRUCTURE
+===========================
+
+Maintainability:
+✓ Separation of concerns (HTML/CSS/JS)
+✓ Easy to locate specific functionality
+✓ Clear file naming conventions
+✓ Logical grouping by feature
+
+Performance:
+✓ CSS/JS files can be cached separately
+✓ Easy to minify individual files
+✓ Can load scripts async/defer
+✓ Parallel download of resources
+
+Scalability:
+✓ Room to add more CSS modules
+✓ Easy to add new JS modules
+✓ Can split further as needed
+✓ Clear patterns for expansion
+
+Collaboration:
+✓ Multiple developers can work simultaneously
+✓ Cleaner git diffs
+✓ Easier code reviews
+✓ Reduced merge conflicts
+
+
+REMOVED FEATURES
+================
+
+✗ WYSIWYG edit mode (all related code removed)
+  - No edit toolbar
+  - No contenteditable logic
+  - No save HTML functionality
+  - Cleaner, production-ready codebase
+
+
+NEXT STEPS
+==========
+
+1. Backend Integration
+   - Connect search to Snowflake API
+   - Add authentication system
+   - Implement data fetching
+
+2. Enhancement
+   - Add loading states
+   - Error handling
+   - Analytics tracking
+   - Performance monitoring
+
+3. Deployment
+   - Set up build pipeline
+   - Configure CDN
+   - Add environment configs
+   - Set up staging/production
