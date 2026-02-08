@@ -59,7 +59,7 @@
 }
 
 .modal-body h3 {
-    color: #2e7d9e;
+    color: #b8864e;
     font-size: 18px;
     font-weight: 600;
     margin-top: 20px;
@@ -143,12 +143,12 @@
 }
 
 .btn-accept {
-    background: #2e7d9e;
+    background: #b8864e;
     color: white;
 }
 
 .btn-accept:hover {
-    background: #236380;
+    background: #9c7040;
 }
 
 .btn-accept:disabled {
@@ -204,7 +204,7 @@
 }
 
 .info-modal-header {
-    background: #2e7d9e;
+    background: #b8864e;
     color: white;
     padding: 16px 24px;
     display: flex;
@@ -263,22 +263,22 @@
 }
 
 .info-card {
-    background: #f8f9fa;
+    background: #f9f5ef;
     padding: 24px;
     border-radius: 12px;
-    border-left: 4px solid #2e7d9e;
+    border-left: 4px solid #b8864e;
 }
 
 .info-card-icon {
     width: 48px;
     height: 48px;
-    background: #e8f4f8;
+    background: #f2e8d6;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
-    color: #2e7d9e;
+    color: #b8864e;
     font-size: 24px;
 }
 
@@ -301,7 +301,7 @@
    ============================================ */
 
 .step-card {
-    background: #f8f9fa;
+    background: #f9f5ef;
     padding: 14px 18px;
     border-radius: 10px;
     margin-bottom: 12px;
@@ -314,7 +314,7 @@
 }
 
 .step-number {
-    background: #2e7d9e;
+    background: #b8864e;
     color: white;
     width: 38px;
     height: 38px;
@@ -328,7 +328,7 @@
 }
 
 .step-content h3 {
-    color: #2e7d9e;
+    color: #b8864e;
     font-size: 11px;
     font-weight: 700;
     margin-bottom: 2px;
@@ -368,11 +368,11 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    background: #f8f9fa;
+    background: #f9f5ef;
 }
 
 .info-footer-icon {
-    color: #2e7d9e;
+    color: #b8864e;
     font-size: 20px;
 }
 
@@ -383,7 +383,7 @@
 
 .info-modal-close-btn {
     padding: 10px 22px;
-    background: #2e7d9e;
+    background: #b8864e;
     color: white;
     border: none;
     border-radius: 6px;
@@ -395,7 +395,7 @@
 }
 
 .info-modal-close-btn:hover {
-    background: #236380;
+    background: #9c7040;
 }
 
 /* ============================================
