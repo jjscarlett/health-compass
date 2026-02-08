@@ -186,6 +186,8 @@
     width: 90%;
     max-height: 85vh;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     animation: modalSlideIn 0.3s ease-out;
 }
@@ -204,14 +206,14 @@
 .info-modal-header {
     background: #2e7d9e;
     color: white;
-    padding: 24px 30px;
+    padding: 16px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .info-modal-header h2 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     margin: 0;
 }
@@ -243,9 +245,10 @@
 }
 
 .info-modal-body {
-    padding: 30px;
+    padding: 16px 24px;
     overflow-y: auto;
-    max-height: calc(85vh - 150px);
+    flex: 1;
+    min-height: 0;
 }
 
 /* ============================================
@@ -299,53 +302,60 @@
 
 .step-card {
     background: #f8f9fa;
-    padding: 24px;
-    border-radius: 12px;
-    margin-bottom: 20px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 12px;
     display: flex;
-    gap: 20px;
+    gap: 16px;
+}
+
+.step-card:last-child {
+    margin-bottom: 0;
 }
 
 .step-number {
     background: #2e7d9e;
     color: white;
-    width: 48px;
-    height: 48px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     flex-shrink: 0;
 }
 
 .step-content h3 {
     color: #2e7d9e;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .step-content h4 {
     color: #1a1a1a;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .step-content p {
     color: #444;
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 4px;
 }
 
 .step-content .example {
     color: #999;
-    font-size: 13px;
+    font-size: 12px;
     font-style: italic;
-    margin-top: 4px;
+    margin-top: 2px;
+    margin-bottom: 0;
 }
 
 /* ============================================
@@ -353,7 +363,7 @@
    ============================================ */
 
 .info-footer {
-    padding: 20px 30px;
+    padding: 14px 24px;
     border-top: 1px solid #e0e0e0;
     display: flex;
     align-items: center;
@@ -372,7 +382,7 @@
 }
 
 .info-modal-close-btn {
-    padding: 12px 24px;
+    padding: 10px 22px;
     background: #2e7d9e;
     color: white;
     border: none;
