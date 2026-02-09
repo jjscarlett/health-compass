@@ -10,7 +10,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #a8d5e2 0%, #7cb8d1 100%);
+    background: linear-gradient(135deg, #e2cba8 0%, #d4b48e 100%);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
@@ -23,7 +23,7 @@ body {
 .bokeh {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 220, 170, 0.3);
     animation: float 20s infinite ease-in-out;
 }
 
@@ -147,7 +147,7 @@ h1 {
 }
 
 .subtitle {
-    color: #2c3e50;
+    color: #3d3529;
     font-size: 20px;
     line-height: 1.6;
     margin-bottom: 60px;
@@ -190,7 +190,7 @@ h1 {
 .search-button {
     width: 50px;
     height: 50px;
-    background: #2e7d9e;
+    background: #b8864e;
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -202,7 +202,7 @@ h1 {
 }
 
 .search-button:hover {
-    background: #236380;
+    background: #9c7040;
 }
 
 .search-button::before {
@@ -252,7 +252,7 @@ h1 {
 }
 
 .feature-content p {
-    color: #2c3e50;
+    color: #3d3529;
     font-size: 14px;
     line-height: 1.6;
 }
@@ -273,7 +273,7 @@ footer {
 }
 
 .footer-text {
-    color: #2c3e50;
+    color: #3d3529;
     font-size: 16px;
 }
 
@@ -294,7 +294,7 @@ footer {
 
 .powered-by-text {
     font-size: 12px;
-    color: #2c3e50;
+    color: #3d3529;
     line-height: 1.4;
 }
 
