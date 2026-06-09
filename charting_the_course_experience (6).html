@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charting the Course | Alberta's Health Compass</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImdyYWQiIGN4PSI1MCUiIGN5PSI0MiUiIHI9IjYyJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGOEMxM0EiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI1NSUiIHN0b3AtY29sb3I9IiNFODk0MUYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjRDk2NjNCIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogIDwvZGVmcz4KICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjIyNS4yOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2dyYWQpIiBzdHJva2Utd2lkdGg9IjEyLjgiLz4KICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjE5OS42OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRTg5NDFGIiBzdHJva2Utd2lkdGg9IjQuMDk2IiBzdHJva2UtZGFzaGFycmF5PSI2LjE0NCA5LjIxNiIgb3BhY2l0eT0iMC43NSIvPgogIDxwb2x5Z29uIHBvaW50cz0iMzM1LjAsMTc3LjAgMjgwLjYsMjU2LjAgMzM1LjAsMzM1LjAgMjU2LjAsMjgwLjYgMTc3LjAsMzM1LjAgMjMxLjQsMjU2LjAgMTc3LjAsMTc3LjAgMjU2LjAsMjMxLjQiIGZpbGw9IiNGOEMxM0EiIG9wYWNpdHk9IjAuOSIvPgogIDxwb2x5Z29uIHBvaW50cz0iMjU2LjAsNzUuOCAyOTQuMiwyMTcuOCA0MzYuMiwyNTYuMCAyOTQuMiwyOTQuMiAyNTYuMCw0MzYuMiAyMTcuOCwyOTQuMiA3NS44LDI1Ni4wIDIxNy44LDIxNy44IiBmaWxsPSJ1cmwoI2dyYWQpIi8+CiAgPGNpcmNsZSBjeD0iMjU2IiBjeT0iMjU2IiByPSIyMy4wNCIgZmlsbD0iI0ZGRjZFMCIvPgogIDwvc3ZnPg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --sky-top:#EEF5FC;--sky-bottom:#C8DFF5;--blue:#003F87;--blue-mid:#1A5EA8;
+  --gold:#E8A020;--gold-dark:#B87A10;--brand-orange:#E8941F;--navy:#0D2545;
+  --text-muted:#4A6A8A;--text-subtle:#8AAAC8;--white:#fff;--card-border:rgba(0,63,135,0.12);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--navy);background:linear-gradient(180deg,var(--sky-top),var(--sky-bottom));background-attachment:fixed;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip;}
+.mountains{position:fixed;bottom:0;left:0;right:0;height:240px;pointer-events:none;z-index:0;}
+.mountains svg{width:100%;height:100%;display:block;}
+.wrap{position:relative;z-index:10;}
+.site-footer{position:relative;z-index:10;margin-top:auto;}
+.site-footer::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(238,245,252,0) 0%,rgba(238,245,252,0.75) 38%,rgba(238,245,252,0.92) 100%);pointer-events:none;}
+.footer-inner{max-width:720px;margin:0 auto;padding:72px 28px 42px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:13px;}
+.footer-mark{display:flex;align-items:center;gap:9px;}
+.footer-mark svg{width:26px;height:26px;}
+.footer-mark .fwm{font-family:Georgia,serif;font-size:16px;font-weight:700;line-height:1;}
+.footer-mark .fwm .h{color:var(--navy);}
+.footer-mark .fwm .c{color:#E8941F;}
+.footer-statement{font-size:12px;color:var(--text-muted);line-height:1.65;max-width:660px;}
+.footer-statement a{color:var(--blue);font-weight:600;text-decoration:none;}
+.footer-statement a:hover{text-decoration:underline;}
+@media (max-width:820px){.footer-inner{padding:52px 24px 34px;}.mountains{height:160px;}}
+
+/* header */
+.topbar{position:sticky;top:0;z-index:300;background:rgba(238,245,252,0.86);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,63,135,0.07);}
+.topbar-inner{max-width:980px;margin:0 auto;padding:15px 28px;display:flex;justify-content:space-between;align-items:center;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.topnav{display:flex;align-items:center;gap:22px;}
+.brand .mark{width:32px;height:32px;}
+.brand .wm{font-family:Georgia,serif;font-size:19px;font-weight:700;line-height:1;}
+.brand .wm .h{color:var(--navy);}.brand .wm .c{color:var(--brand-orange);}
+.topbar a{font-size:13px;color:var(--text-muted);text-decoration:none;font-weight:500;cursor:pointer;}
+.topbar a:hover{color:var(--blue);}
+
+.wrap{max-width:980px;margin:0 auto;padding:0 28px;}
+
+/* chooser */
+.chooser{padding:54px 0 80px;text-align:center;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:18px;}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+.chooser h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:50px;line-height:1.1;color:var(--navy);margin-bottom:14px;}
+.chooser h1 em{font-style:italic;color:var(--blue);}
+.chooser .lead{font-size:16.5px;color:var(--text-muted);max-width:600px;margin:0 auto 16px;line-height:1.6;}
+.chooser .byline{font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-subtle);margin-bottom:42px;}
+.picks{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+.pick{flex:1;min-width:230px;max-width:265px;background:var(--white);border:1px solid var(--card-border);border-radius:18px;padding:26px 22px;cursor:pointer;text-align:left;transition:transform .2s,box-shadow .2s,border-color .2s;box-shadow:0 6px 22px rgba(0,63,135,0.08);}
+.pick:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,63,135,0.16);border-color:var(--gold);}
+.pick .ic{width:46px;height:46px;margin-bottom:16px;}
+.pick .role{font-size:10.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:5px;}
+.pick h3{font-size:19px;font-weight:600;color:var(--navy);margin-bottom:6px;}
+.pick p{font-size:13px;color:var(--text-muted);line-height:1.55;}
+.pick .go{margin-top:14px;font-size:13px;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:6px;}
+
+/* story view */
+.story{display:none;}
+.story.active{display:block;}
+.switchbar{position:sticky;top:59px;z-index:120;display:flex;gap:8px;justify-content:center;background:rgba(238,245,252,0.92);backdrop-filter:blur(10px);padding:12px;margin:0 -28px 26px;flex-wrap:wrap;border-bottom:1px solid rgba(0,63,135,0.06);}
+.switchbar button{font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:600;color:var(--text-muted);background:transparent;border:1px solid var(--card-border);border-radius:50px;padding:8px 15px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;}
+.switchbar button.on{background:var(--blue);color:#fff;border-color:var(--blue);}
+.switchbar button:hover:not(.on){border-color:var(--gold);}
+.switchbar button .mini{width:15px;height:15px;}
+.switchbar .restart{color:var(--gold-dark);border-color:rgba(232,160,32,0.4);}
+
+.grid{display:grid;grid-template-columns:250px 1fr;gap:46px;align-items:start;padding-bottom:30px;}
+.clockcol{position:sticky;top:130px;align-self:start;}
+.clock{width:210px;height:210px;margin:0 auto;}
+.hand{transform-box:fill-box;transform-origin:bottom center;}
+.digital{text-align:center;margin-top:16px;}
+.digital .time{font-family:'DM Serif Display',serif;font-size:32px;color:var(--blue);line-height:1;}
+.digital .meridiem{font-size:12px;color:var(--text-subtle);margin-top:2px;letter-spacing:0.1em;}
+.digital .act{font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dark);margin-top:12px;}
+
+.phead{text-align:left;margin-bottom:26px;}
+.phead .ic{width:50px;height:50px;margin-bottom:12px;}
+.phead .role{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dark);}
+.phead h2{font-family:'DM Serif Display',serif;font-size:34px;color:var(--navy);font-weight:400;line-height:1.1;}
+.phead .place{font-size:13px;color:var(--text-subtle);font-style:italic;margin-top:3px;}
+
+.act-divider{margin:34px 0 20px;}
+.act-divider .num{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dark);}
+.act-divider .title{font-family:'DM Serif Display',serif;font-style:italic;font-size:27px;color:var(--blue);margin-top:2px;}
+.act-divider .tease{font-size:13.5px;color:var(--text-muted);margin-top:7px;line-height:1.5;}
+
+.beat{background:var(--white);border:1px solid var(--card-border);border-radius:16px;padding:24px 26px;margin-bottom:20px;box-shadow:0 8px 28px rgba(0,63,135,0.08);opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.beat.in{opacity:1;transform:none;}
+.beat .stamp{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;color:var(--gold-dark);margin-bottom:10px;}
+.beat .stamp .pin{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(232,160,32,0.18);}
+.beat h4{font-size:18px;font-weight:600;color:var(--navy);letter-spacing:-0.01em;margin-bottom:3px;}
+.beat .place{font-size:12.5px;color:var(--text-subtle);font-style:italic;margin-bottom:13px;}
+.beat p{font-size:14px;line-height:1.66;color:#36506B;margin-bottom:11px;}
+.beat p:last-child{margin-bottom:0;}
+.beat .who{color:var(--navy);font-weight:600;}
+
+/* chat exchange */
+.chat{background:#F4F9FE;border-left:3px solid var(--blue);border-radius:0 10px 10px 0;padding:14px 16px;margin:13px 0;}
+.chat .q{color:var(--blue);font-weight:600;font-style:italic;font-size:13.5px;display:block;margin-bottom:9px;}
+.chat .a{color:var(--text-muted);font-size:13px;line-height:1.6;}
+.chat .a b{color:var(--navy);font-weight:600;}
+
+/* mini charts */
+.chart-card{border:1px solid var(--card-border);border-radius:12px;padding:15px 16px 12px;margin:13px 0;background:#FCFDFF;}
+.chart-card .ct{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:10px;}
+.chart-card svg{width:100%;height:auto;display:block;}
+.chart-card .cap{font-size:11.5px;color:var(--text-subtle);margin-top:8px;line-height:1.45;}
+.legend{display:flex;gap:16px;margin-top:9px;font-size:11.5px;color:var(--text-muted);}
+.legend span{display:inline-flex;align-items:center;gap:6px;}
+.legend .sw{width:14px;height:3px;border-radius:2px;}
+
+/* priority list */
+.prio{list-style:none;margin:6px 0 4px;}
+.prio li{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #EDF3FA;font-size:13.5px;line-height:1.5;color:#36506B;}
+.prio li:last-child{border-bottom:none;}
+.badge{flex-shrink:0;font-size:9.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:3px 8px;border-radius:50px;margin-top:1px;}
+.badge.crit{background:#FBE4DD;color:#B23B17;}
+.badge.high{background:#FCEFD2;color:#A9740C;}
+.badge.med{background:#E1ECF8;color:#2C5C97;}
+.prio b{color:var(--navy);}
+
+/* stat row */
+.stats{display:flex;gap:12px;margin:13px 0;flex-wrap:wrap;}
+.stat{flex:1;min-width:120px;background:#F4F9FE;border-radius:10px;padding:13px 15px;border-left:3px solid var(--gold);}
+.stat .n{font-family:'DM Serif Display',serif;font-size:24px;color:var(--blue);line-height:1;}
+.stat .l{font-size:11.5px;color:var(--text-muted);margin-top:5px;line-height:1.4;}
+
+/* Maya's email, the hopeful centerpiece */
+.email{position:relative;border-radius:18px;padding:2px;background:linear-gradient(135deg,var(--gold),#F8C13A,var(--blue));box-shadow:0 16px 44px rgba(0,63,135,0.18);margin:8px 0 6px;}
+.email-inner{background:#fff;border-radius:16px;overflow:hidden;}
+.email-bar{background:linear-gradient(90deg,var(--navy),var(--blue));color:#fff;padding:15px 22px;}
+.email-bar .frm{font-size:12px;opacity:0.85;}
+.email-bar .subj{font-family:'DM Serif Display',serif;font-size:20px;margin-top:3px;}
+.email-body{padding:22px 24px;}
+.email-body p{font-size:14px;line-height:1.7;color:#33506C;margin-bottom:13px;}
+.email-body .hope{font-size:15.5px;line-height:1.65;color:var(--navy);font-weight:500;background:rgba(232,160,32,0.10);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:13px 16px;margin:4px 0 15px;}
+.email-body .sig{font-family:'DM Serif Display',serif;font-style:italic;font-size:17px;color:var(--blue);margin-top:4px;}
+.email-flag{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:10px;}
+
+/* convergence */
+.converge{margin:50px 0 0;padding:40px 34px;background:linear-gradient(180deg,rgba(0,63,135,0.05),rgba(232,160,32,0.07));border-radius:22px;text-align:center;}
+.converge .tag{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:8px;}
+.converge h3{font-family:'DM Serif Display',serif;font-style:italic;font-size:32px;color:var(--blue);margin-bottom:16px;}
+.converge p{font-size:14.5px;line-height:1.68;color:#36506B;max-width:640px;margin:0 auto 13px;text-align:left;}
+.converge .center{text-align:center;font-weight:600;color:var(--navy);font-size:17px;margin:24px auto 6px;}
+.quote{background:rgba(255,255,255,0.7);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:24px 28px;text-align:left;max-width:660px;margin:24px auto;}
+.quote p{font-family:'DM Serif Display',serif;font-style:italic;font-size:19px;line-height:1.5;color:var(--navy);margin:0;}
+.needyou{max-width:640px;margin:24px auto 0;text-align:left;}
+.needyou .line{font-size:13.5px;color:#36506B;line-height:1.6;padding:7px 0 7px 18px;border-left:2px solid var(--gold);margin-bottom:8px;}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#fff;font-size:15.5px;font-weight:600;padding:15px 32px;border-radius:50px;text-decoration:none;box-shadow:0 6px 20px rgba(0,63,135,0.25);margin-top:20px;}
+.cta:hover{background:var(--blue-mid);}
+.authors-link{display:block;margin-top:26px;font-size:13px;color:var(--blue);font-weight:600;cursor:pointer;}
+.authors-link:hover{text-decoration:underline;}
+
+/* authors modal */
+.overlay{position:fixed;inset:0;background:rgba(13,37,69,0.55);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:500;padding:24px;}
+.overlay.show{display:flex;}
+.modal{background:#fff;border-radius:16px;max-width:680px;width:100%;max-height:86vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 72px rgba(13,37,69,0.25);}
+.modal-head{background:var(--blue);color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;}
+.modal-head h2{font-family:'DM Serif Display',serif;font-size:20px;font-weight:400;}
+.modal-head button{background:none;border:none;color:rgba(255,255,255,0.75);font-size:22px;cursor:pointer;line-height:1;}
+.modal-head button:hover{color:#fff;}
+.modal-body{padding:24px;overflow-y:auto;}
+.author{display:flex;gap:16px;margin-bottom:22px;}
+.author:last-child{margin-bottom:0;}
+.author .av{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue-mid));color:#fff;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:22px;flex-shrink:0;}
+.author h3{font-size:16px;color:var(--navy);margin-bottom:2px;}
+.author .ti{font-size:12px;color:var(--gold-dark);font-weight:600;margin-bottom:8px;}
+.author p{font-size:13px;line-height:1.6;color:var(--text-muted);}
+.copyright{text-align:center;font-size:11px;color:var(--text-subtle);padding:20px;}
+
+
+
+@media (max-width:820px){
+  .grid{grid-template-columns:1fr;gap:0;}
+  .clockcol{position:sticky;top:108px;z-index:90;background:rgba(238,245,252,0.94);backdrop-filter:blur(8px);border-radius:14px;padding:10px 0 6px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:18px;}
+  .clock{width:90px;height:90px;margin:0;}
+  .digital{margin-top:0;text-align:left;}
+  .digital .time{font-size:24px;}.digital .act{margin-top:4px;}
+  .switchbar{top:59px;}
+  .chooser h1{font-size:34px;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .beat{opacity:1;transform:none;transition:none;}
+  .hand{transition:none!important;}
+}
+</style>
+</head>
+<body>
+
+<div class="mountains" aria-hidden="true">
+        <svg viewBox="0 0 1440 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 260 L0 155 L60 118 L110 140 L170 95 L230 125 L290 80 L350 112 L410 68 L470 100 L530 58 L590 92 L650 45 L710 82 L770 38 L830 75 L890 50 L950 88 L1010 55 L1070 90 L1130 60 L1190 95 L1250 65 L1310 98 L1380 72 L1440 88 L1440 260 Z" fill="#003F87" opacity="0.13"/>
+            <path d="M0 260 L0 178 L80 155 L140 168 L200 142 L270 158 L330 130 L400 148 L460 120 L530 140 L600 112 L660 132 L730 105 L800 128 L870 108 L940 130 L1010 115 L1080 132 L1150 118 L1220 135 L1300 120 L1370 135 L1440 125 L1440 260 Z" fill="#003F87" opacity="0.30"/>
+            <path d="M0 260 L0 205 L55 192 L100 200 L155 182 L200 195 L255 175 L305 188 L360 170 L415 185 L470 165 L525 180 L580 162 L635 178 L690 160 L745 175 L800 158 L860 173 L920 160 L980 172 L1040 158 L1100 170 L1160 156 L1220 168 L1290 158 L1360 165 L1440 158 L1440 260 Z" fill="#003F87" opacity="0.62"/>
+            <path d="M0 260 Q80 222 180 232 Q280 242 400 224 Q520 208 640 222 Q760 236 880 218 Q1000 202 1120 218 Q1240 232 1340 218 Q1390 212 1440 216 L1440 260 Z" fill="#4E8A72"/>
+            <path d="M0 260 Q120 242 240 248 Q360 254 480 244 Q600 236 720 244 Q840 252 960 242 Q1080 234 1200 242 Q1320 250 1440 242 L1440 260 Z" fill="#DCAA38"/>
+        </svg>
+    </div>
+
+
+<div class="topbar"><div class="topbar-inner">
+  <a class="brand" href="index.html" title="Back to Health Compass">
+    <svg class="mark" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="bg" cx="50%" cy="42%" r="62%"><stop offset="0%" stop-color="#F8C13A"/><stop offset="55%" stop-color="#E8941F"/><stop offset="100%" stop-color="#D9663B"/></radialGradient></defs><circle cx="256" cy="256" r="225" fill="none" stroke="url(#bg)" stroke-width="13"/><circle cx="256" cy="256" r="200" fill="none" stroke="#E8941F" stroke-width="4" stroke-dasharray="6 9" opacity="0.75"/><polygon points="335,177 280.6,256 335,335 256,280.6 177,335 231.4,256 177,177 256,231.4" fill="#F8C13A" opacity="0.9"/><polygon points="256,75.8 294.2,217.8 436.2,256 294.2,294.2 256,436.2 217.8,294.2 75.8,256 217.8,217.8" fill="url(#bg)"/><circle cx="256" cy="256" r="23" fill="#FFF6E0"/></svg>
+    <span class="wm"><span class="h">Health</span> <span class="c">Compass</span></span>
+  </a>
+  <div class="topnav">
+    <a href="index.html">&larr; Back to Health Compass</a>
+    <a onclick="openAuthors()">About the authors</a>
+  </div>
+</div></div>
+
+<div class="wrap">
+  <!-- CHOOSER -->
+  <div class="chooser" id="chooser">
+    <div class="eyebrow"><span class="dot"></span>Charting the Course</div>
+    <h1>One morning. Three people.<br><em>Whose story will you follow?</em></h1>
+    <p class="lead">Three colleagues log in to the new Health Compass on the same ordinary morning, and discover that the data they've always needed is finally, instantly, theirs. Pick a path to walk their day, then watch all three converge.</p>
+    <div class="byline">A story by Pierre Guénette &amp; Jason Scarlett</div>
+    <div class="picks">
+      <div class="pick" onclick="openPath('minister')">
+        <div class="ic" id="ic-min"></div>
+        <div class="role">The Minister</div>
+        <h3>Sarah Chen</h3>
+        <p>Facing Question Period with the opposition hammering on ED wait times, and no answers in hand.</p>
+        <div class="go">Follow her morning →</div>
+      </div>
+      <div class="pick" onclick="openPath('director')">
+        <div class="ic" id="ic-dir"></div>
+        <div class="role">The Director</div>
+        <h3>Dr. James Kowalski</h3>
+        <p>Two hours to build site-specific ED recommendations that normally take weeks of consultation.</p>
+        <div class="go">Follow his morning →</div>
+      </div>
+      <div class="pick" onclick="openPath('analyst')">
+        <div class="ic" id="ic-ana"></div>
+        <div class="role">The Analyst</div>
+        <h3>Maya Patel</h3>
+        <p>47 unread emails, the same questions again, and a quiet fear of being made obsolete.</p>
+        <div class="go">Follow her morning →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <div class="story" id="storyView">
+    <div class="switchbar" id="switchbar"></div>
+    <div class="grid">
+      <div class="clockcol">
+        <svg class="clock" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="cg" cx="50%" cy="42%" r="62%"><stop offset="0%" stop-color="#F8C13A"/><stop offset="55%" stop-color="#E8941F"/><stop offset="100%" stop-color="#D9663B"/></radialGradient></defs>
+          <circle cx="100" cy="100" r="92" fill="#fff" stroke="url(#cg)" stroke-width="5"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#003F87" stroke-width="1.5" stroke-dasharray="2 7.5" opacity="0.5"/>
+          <g id="ticks"></g>
+          <line id="hourHand" class="hand" x1="100" y1="100" x2="100" y2="58" stroke="#003F87" stroke-width="5" stroke-linecap="round"/>
+          <line id="minHand" class="hand" x1="100" y1="100" x2="100" y2="40" stroke="#E8941F" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="100" cy="100" r="6" fill="#003F87"/><circle cx="100" cy="100" r="2.5" fill="#FFF6E0"/>
+        </svg>
+        <div class="digital">
+          <div class="time" id="dTime">7:30</div>
+          <div class="meridiem" id="dMer">AM</div>
+          <div class="act" id="dAct">Act One</div>
+        </div>
+      </div>
+      <div class="beatscol" id="pathBody"></div>
+    </div>
+
+    <!-- shared convergence -->
+    <div class="converge">
+      <div class="tag">Act Three · The paths converge</div>
+      <h3>True North</h3>
+      <p>By late afternoon, something remarkable was sweeping through Alberta's health system. Minister Chen prepared a Question Period response backed by data she'd explored herself, when challenged, she could speak with confidence because she'd traced the patterns, not read someone else's summary. Dr. Kowalski didn't just present; he launched a task force to redesign ED scheduling. Asked how long it took, he said "About an hour this morning, on my own." The room fell silent, then: "If we can answer this quickly, we need to be asking <span class="who">harder</span> questions."</p>
+      <p>And across the system, hundreds of others were having their own revelations. A primary-care director found that attachment rates masked patients leaving within six months. An EMS manager found response targets met on average but with dangerous variation. A cancer planner found acceptable aggregate screening hiding real geographic disparities. <span class="who">These weren't just people getting answers, they were people asking better questions, moving from reactive management to proactive leadership.</span></p>
+      <div class="quote"><p>"The goal is not to replace human judgment with artificial intelligence, but to augment human intelligence with artificial capability. The questions that matter most still require human wisdom, we're making the answers easier to find."</p></div>
+      <p class="center">6:00 PM. Three screens go dark. The work doesn't stop.</p>
+      <p>None of what happened today was magic. It worked because, long before this ordinary morning, a stubborn handful of data owners, engineers, stewards, and analysts decided that "good enough" data was no longer good enough. They cleaned fields no one thanked them for. They argued over the true definition of "admission." They stayed late to make sure Calgary and Edmonton spoke the same language as Grande Prairie and Lethbridge. <span class="who">They are still out there, and they are tired of carrying the weight alone.</span></p>
+      <div class="needyou">
+        <div class="line">If you're an <b>application owner</b> who winces every time someone says "the data is wrong"…</div>
+        <div class="line">If you're a <b>data engineer</b> who wants the tables you build to change a Minister's answer in Question Period…</div>
+        <div class="line">If you're an <b>analyst</b> exhausted from answering the same report different ways, who dreams of deeper, meaningful work…</div>
+        <div class="line">If you're a <b>clinician or manager</b> who never knows exactly why your numbers don't match the provincial ones…</div>
+      </div>
+      <p class="center">We need you.</p>
+      <p style="text-align:center;">The data is waiting. The Health Compass is ready. Your colleagues are already contributing.</p>
+      <a class="cta" href="#">Express your interest<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <span class="authors-link" onclick="openAuthors()">About the authors →</span>
+    </div>
+  </div>
+</div>
+
+<!-- AUTHORS MODAL -->
+<div class="overlay" id="authorsModal">
+  <div class="modal">
+    <div class="modal-head"><h2>About the Authors</h2><button onclick="closeAuthors()" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+      <div class="author">
+        <div class="av">PG</div>
+        <div>
+          <h3>Pierre Guénette</h3>
+          <div class="ti">Lead, Data Analytics Enablement · Health Shared Services</div>
+          <p>With more than 14 years in healthcare analytics, Pierre embraces the challenge of extracting the narratives hidden inside complex datasets, rooted in economics training that instilled a systems-level view of healthcare data. Prioritizing user adoption, he redesigned an end-of-life reporting process to align with physician workflows, cutting reporting time from a week to hours, and contributed to a continuing-care clinical software upgrade nominated for the AHS President's Excellence Award. He holds a BSocSc in Economics (University of Ottawa) and an MA in Economics (University of Calgary).</p>
+        </div>
+      </div>
+      <div class="author">
+        <div class="av">JS</div>
+        <div>
+          <h3>Jason Scarlett</h3>
+          <div class="ti">Executive Director, Enterprise Data Engineering · Health Shared Services</div>
+          <p>Jason supports a province-wide data ecosystem used by more than 500 analysts and 20,000 users. His passion for clear data communication began in 2007, when a cardiac surgery project succeeded only after a better visualization revealed the insight. Across nearly two decades in healthcare he has advanced visual analytics, cloud and AI adoption, and provincial data literacy. Before healthcare he spent five years in manufacturing, designing Western Canada's largest plant. He holds a PhD in Engineering (University of Calgary) and received the Queen Elizabeth II Platinum Jubilee Medal for his contributions during COVID-19.</p>
+        </div>
+      </div>
+      <div class="copyright">© 2026 Pierre Guénette and Jason Scarlett. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- icons ---------- */
+const ICONS={
+ min:'<svg viewBox="0 0 44 44" fill="none"><path d="M7 17 L22 7 L37 17 Z" stroke="#003F87" stroke-width="2" stroke-linejoin="round"/><circle cx="22" cy="13.5" r="1.8" fill="#E8A020"/><line x1="8" y1="17" x2="36" y2="17" stroke="#003F87" stroke-width="2" stroke-linecap="round"/><g stroke="#003F87" stroke-width="2" stroke-linecap="round"><line x1="12" y1="20" x2="12" y2="33"/><line x1="18.7" y1="20" x2="18.7" y2="33"/><line x1="25.3" y1="20" x2="25.3" y2="33"/><line x1="32" y1="20" x2="32" y2="33"/></g><line x1="9" y1="33" x2="35" y2="33" stroke="#003F87" stroke-width="2" stroke-linecap="round"/><line x1="6" y1="37" x2="38" y2="37" stroke="#E8A020" stroke-width="2" stroke-linecap="round"/></svg>',
+ dir:'<svg viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="6" stroke="#003F87" stroke-width="2"/><path d="M10 37 c0-7 5.4-11 12-11 s12 4 12 11" stroke="#003F87" stroke-width="2" stroke-linecap="round"/><path d="M22 23 V31 M18 27 H26" stroke="#E8A020" stroke-width="2.2" stroke-linecap="round"/></svg>',
+ ana:'<svg viewBox="0 0 44 44" fill="none"><rect x="7" y="9" width="30" height="22" rx="3" stroke="#003F87" stroke-width="2"/><path d="M13 25 L18 19 L23 23 L31 14" stroke="#E8A020" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 37 H28 M22 31 V37" stroke="#003F87" stroke-width="2" stroke-linecap="round"/></svg>'
+};
+document.getElementById('ic-min').innerHTML=ICONS.min;
+document.getElementById('ic-dir').innerHTML=ICONS.dir;
+document.getElementById('ic-ana').innerHTML=ICONS.ana;
+
+/* ---------- charts ---------- */
+
+const statsAdmission=`<div class="stats">
+<div class="stat"><div class="n">+4–6 pts</div><div class="l">Calgary admission rate above Edmonton</div></div>
+<div class="stat"><div class="n">10.6 → 12.7%</div><div class="l">Edmonton admission rate as acuity rose</div></div></div>`;
+
+const prioList=`<ul class="prio">
+<li><span class="badge crit">Critical</span><div><b>Peak-hour capacity management</b>, 10–11 AM demand surges identified.</div></li>
+<li><span class="badge high">High</span><div><b>Admission process bottlenecks</b>, 18.8% admission rate well above peer average.</div></li>
+<li><span class="badge med">Medium</span><div><b>LWBS reduction</b>, 9.4% left-without-being-seen affects satisfaction &amp; outcomes.</div></li></ul>`;
+
+const chartArrivals=`<div class="chart-card"><div class="ct">Average Arrivals vs Assessments per Hour, Peter Lougheed</div>
+<svg viewBox="0 0 700 384"><line x1="58" y1="344.0" x2="678" y2="344.0" stroke="#EAEFF4" stroke-width="1"/><text x="50" y="347.5" font-size="11" fill="#9DB4CC" text-anchor="end">0</text><line x1="58" y1="312.9" x2="678" y2="312.9" stroke="#EAEFF4" stroke-width="1"/><text x="50" y="316.4" font-size="11" fill="#9DB4CC" text-anchor="end">2</text><line x1="58" y1="281.8" x2="678" y2="281.8" stroke="#EAEFF4" stroke-width="1"/><text x="50" y="285.3" font-size="11" fill="#9DB4CC" text-anchor="end">4</text><line x1="58" y1="250.7" x2="678" y2="250.7" stroke="#EAEFF4" stroke-width="1"/><text x="50" y="254.2" font-size="11" fill="#9DB4CC" text-anchor="end">6</text><line x1="58" y1="219.6" x2="678" y2="219.6" stroke="#EAEFF4" stroke-width="1"/><text x="50" y="223.1" font-size="11" fill="#9DB4CC" text-anchor="end">8</text><line x1="58" y1="188.4" x2="678" y2="188.4" stroke="#EAEFF4" stroke-width="1"/><text x="50" y="191.9" font-size="11" fill="#9DB4CC" text-anchor="end">10</text><line x1="58" y1="157.3" x2="678" y2="157.3" stroke="#EAEFF4" stroke-width="1"/><text x="50" y="160.8" font-size="11" fill="#9DB4CC" text-anchor="end">12</text><line x1="58" y1="126.2" x2="678" y2="126.2" stroke="#EAEFF4" stroke-width="1"/><text x="50" y="129.7" font-size="11" fill="#9DB4CC" text-anchor="end">14</text><line x1="58" y1="95.1" x2="678" y2="95.1" stroke="#EAEFF4" stroke-width="1"/><text x="50" y="98.6" font-size="11" fill="#9DB4CC" text-anchor="end">16</text><line x1="58" y1="64.0" x2="678" y2="64.0" stroke="#EAEFF4" stroke-width="1"/><text x="50" y="67.5" font-size="11" fill="#9DB4CC" text-anchor="end">18</text><text x="58.0" y="361" font-size="11" fill="#9DB4CC" text-anchor="middle">0</text><text x="111.9" y="361" font-size="11" fill="#9DB4CC" text-anchor="middle">2</text><text x="165.8" y="361" font-size="11" fill="#9DB4CC" text-anchor="middle">4</text><text x="219.7" y="361" font-size="11" fill="#9DB4CC" text-anchor="middle">6</text><text x="273.7" y="361" font-size="11" fill="#9DB4CC" text-anchor="middle">8</text><text x="327.6" y="361" font-size="11" fill="#9DB4CC" text-anchor="middle">10</text><text x="381.5" y="361" font-size="11" fill="#9DB4CC" text-anchor="middle">12</text><text x="435.4" y="361" font-size="11" fill="#9DB4CC" text-anchor="middle">14</text><text x="489.3" y="361" font-size="11" fill="#9DB4CC" text-anchor="middle">16</text><text x="543.2" y="361" font-size="11" fill="#9DB4CC" text-anchor="middle">18</text><text x="597.1" y="361" font-size="11" fill="#9DB4CC" text-anchor="middle">20</text><text x="651.0" y="361" font-size="11" fill="#9DB4CC" text-anchor="middle">22</text><text x="368" y="379" font-size="12" fill="#6A86A4" text-anchor="middle">Hour of Day</text><text transform="translate(15,204) rotate(-90)" font-size="12" fill="#6A86A4" text-anchor="middle">Average Count per Hour</text><polyline points="58.0,199.3 85.0,235.1 111.9,263.1 138.9,277.1 165.8,283.3 192.8,286.4 219.7,247.6 246.7,238.2 273.7,250.7 300.6,224.2 327.6,200.9 354.5,196.2 381.5,188.4 408.4,185.3 435.4,210.2 462.3,188.4 489.3,186.9 516.3,157.3 543.2,176.0 570.2,172.9 597.1,171.3 624.1,200.9 651.0,188.4 678.0,194.7" fill="none" stroke="#E0A11E" stroke-width="2.5" stroke-linejoin="round"/><polyline points="58.0,224.2 85.0,249.1 111.9,266.2 138.9,272.4 165.8,278.7 192.8,277.1 219.7,274.0 246.7,238.2 273.7,199.3 300.6,176.0 327.6,157.3 354.5,84.2 381.5,129.3 408.4,132.4 435.4,120.0 462.3,138.7 489.3,151.1 516.3,165.1 543.2,157.3 570.2,155.8 597.1,188.4 624.1,190.0 651.0,188.4 678.0,216.4" fill="none" stroke="#2E6FD6" stroke-width="2.5" stroke-linejoin="round"/></svg>
+<div class="legend"><span><span class="sw" style="background:#2E6FD6"></span>Average Arrivals</span><span><span class="sw" style="background:#E0A11E"></span>Average Assessments</span></div>
+<div class="cap">Arrivals (blue) outpace assessment capacity (gold) through the late-morning surge, peaking near 11&nbsp;AM, the chart Dr. Kowalski pasted straight into his presentation.</div></div>`;
+
+
+/* ---------- story data ---------- */
+const PATHS={
+ minister:{icon:ICONS.min,role:'The Minister',name:'Minister Sarah Chen',place:"Minister's Office · Legislature Building",
+  beats:[
+   {t:'07:30',act:'Act One',acth:'Without a Compass',tease:'Short on time and data, with Question Period looming.',
+    title:'The Minister, short on time and data', place:"Minister's Office · Legislature Building",
+    html:`<p>Minister Chen sat reviewing briefing notes for Question Period. The opposition had been hammering on emergency department wait times, and she needed concrete answers fast.</p>
+    <p>"We need to understand the acuity trends," she told her deputy. "Are we actually seeing more urgent patients, or are wait times up for other reasons? And how does Edmonton compare to Calgary over the past decade?"</p>
+    <p>In the past, this would trigger a cascade: a request to the analytics team, a wait of several days, back-and-forth emails, then a static report that only prompted more questions. <span class="who">But today was different.</span></p>
+    <p>Her deputy pulled up a laptop. "Minister, you now have access to the new Health Compass. Why not ask it directly?" She hesitated, she'd heard these promises before. "Does this actually work?" "Only one way to find out."</p>`},
+   {t:'08:00',act:'Act Two',acth:'First Bearing',tease:'One question. An answer in under a minute.',
+    title:'The Minister tries her first question', place:'Health Compass · chat interface',
+    html:`<p>A clean chat interface greeted her. She typed her prompt naturally, the way she'd ask an analyst:</p>
+    <div class="chat"><span class="q">"How has patient acuity in emergency differed between Edmonton and Calgary over the last 15 years?"</span>
+    <span class="a">Based on CTAS data (2009–2024): Calgary has consistently treated a higher proportion of high-acuity patients, while Edmonton has shifted notably upward, from <b>16% (2010) to 29% (2025)</b>. COVID-19 (2020–21) temporarily increased high-acuity shares in both zones.</span></div>
+    <p>She'd half-expected an error. Instead, context and caveats she might have missed in a plain table. She immediately followed up:</p>
+    <div class="chat"><span class="q">"Show me the correlation with admission rates."</span>
+    <span class="a">Calgary's higher acuity correlates with <b>4–6 points higher admission rates</b> than Edmonton. As Edmonton's acuity rose 16% → 29%, its admission rate climbed <b>10.6% → 12.7%</b>, pointing to possible care-model differences such as Urgent Care capacity.</span></div>
+    ${statsAdmission}
+    <p>She was already formulating her Question Period response, and she had five more questions she wanted to ask. <span class="who">For the first time in years, she understood the data because she'd explored it herself.</span></p>`},
+   {t:'16:30',act:'Act Three',acth:'True North',tease:'Confidence she earned herself.',
+    title:'Question Period, on her own terms', place:'Legislature',
+    html:`<p>By Question Period, Minister Chen had a comprehensive response backed by data she'd explored herself. She understood the nuances because she'd asked the follow-ups and traced the patterns. <span class="who">When challenged, she spoke with confidence, because she'd done the analysis herself, not read someone else's summary.</span></p>`}
+  ]},
+ director:{icon:ICONS.dir,role:'The Director',name:'Dr. James Kowalski',place:'Hospital Operations',
+  beats:[
+   {t:'08:30',act:'Act One',acth:'Without a Compass',tease:'Two hours to do weeks of work.',
+    title:'A Director prepares for a critical meeting', place:"Dr. Kowalski's Office · Hospital Operations",
+    html:`<p>Dr. Kowalski stared at the 10:30 leadership agenda and felt the knot tighten. <span class="who">Item 3: Emergency Department Flow Improvement, Present Site-Specific Recommendations.</span></p>
+    <p>He didn't know where to start. Another hospital had finished the same project six months ago, but their ED served a different community, ran a different volume, supported different inpatient services. What worked there might not fit here at all. Formal consultation meant weeks of coordination, and he had two hours.</p>
+    <p>Then he noticed yesterday's unread email: "Your access to the Health Compass has been approved." He had nothing to lose. <span class="who">"Worth a shot," he muttered, opening the interface.</span></p>`},
+   {t:'09:00',act:'Act Two',acth:'First Bearing',tease:'He connects the dots, and feels like a clinician again.',
+    title:'The Director finally connects the dots', place:'Health Compass · chat interface',
+    html:`<p>He typed a broad question, expecting it to fail:</p>
+    <div class="chat"><span class="q">"How would you improve flow through the emergency department at the General Hospital?"</span>
+    <span class="a">Priority improvement strategies, by impact:</span></div>
+    ${prioList}
+    <p>He leaned back, stunned. In under a minute the system had understood his flow question, identified front-door, mid-stream and back-door issues, and offered intelligent follow-ups. His presentation was writing itself, but more importantly, it sparked a new question:</p>
+    <div class="chat"><span class="q">"How do hourly patient arrivals compare to our capacity to meet demand?"</span>
+    <span class="a">Linking arrivals with physician assessment times reveals a sharp 10–11 AM mismatch:</span></div>
+    ${chartArrivals}
+    <p>He was no longer worried about his presentation; he was thinking about change, asking questions he'd always wanted to but never had the means to answer. <span class="who">He felt like a clinician again: diagnosing problems, testing hypotheses, discovering solutions.</span></p>`},
+   {t:'16:30',act:'Act Three',acth:'True North',tease:'A 15-minute dive becomes a task force.',
+    title:'The room falls silent', place:'Leadership meeting',
+    html:`<p>Dr. Kowalski didn't just deliver the presentation, he initiated a task force to redesign the ED scheduling patterns he'd discovered. The board was impressed by insights that simply hadn't been surfaced before. One member asked how long it took his team to pull it together. <span class="who">"About an hour this morning, on my own."</span> The room fell silent. Then someone spoke up: "If we can answer these questions this quickly, we need to be asking <span class="who">harder</span> questions."</p>`}
+  ]},
+ analyst:{icon:ICONS.ana,role:'The Analyst',name:'Maya Patel',place:'Provincial Analytics Hub',
+  beats:[
+   {t:'09:30',act:'Act One',acth:'Without a Compass',tease:'47 unread emails, and a quiet fear.',
+    title:'An Analyst opens an overflowing inbox', place:"Maya Patel's Desk · Provincial Analytics Hub",
+    html:`<p>Maya stared at 47 unread messages: "Urgent: ED volume trends for the Minister's office." "Calgary vs Edmonton CTAS 1–2 comparison." "Re: Re: Re: Can you update that chart from March?"</p>
+    <p>A senior analyst in ED performance, Maya loved the detective work, the satisfaction of answering complex questions that shaped policy. But lately she was drowning in repetition. Another email landed: "Quick question, same ED volume report as Q2 but for Q3?" She sighed.</p>
+    <p>Just below it: "Health Compass is now live." She drafted a reply-all template: "Try the new Health Compass, it can pull this directly." Then hope and doubt crept in: <span class="who">What if I could focus on the questions that really matter?</span> And, quieter: <span class="who">What if this works too well and they don't need me anymore?</span></p>`},
+   {t:'14:00',act:'Act Two',acth:'First Bearing',tease:'The inbox goes quiet, and the real work begins.',
+    title:'The Analyst notices her inbox has gone quiet', place:"Maya Patel's Desk · Provincial Analytics Hub",
+    html:`<p>By 2 PM, usually a dozen follow-ups would have landed. Today? Silence. A flicker of unease, had she missed something? She checked the anonymized query logs. Dozens of queries that morning. People still had questions, and they were answering them themselves:</p>
+    <div class="chat"><span class="a">"ED wait times by triage level, Calgary, last quarter" · "Cancer screening rates by zone" · "EMS response times urban vs rural 2024" · "Primary care attachment rates trending"</span></div>
+    <p>These were questions she'd answered dozens of times. Important, but ones that needed access and basic analysis, not her expertise. Then she saw one that made her smile: <span class="who">"What factors most strongly predict 72-hour ED return visits, and has this changed over five years?"</span> The kind of question she'd imagined tackling when she first joined.</p>
+    <p>She opened her own Compass and typed:</p>
+    <div class="chat"><span class="q">"Show me anomalies in ED left-without-being-seen rates across all sites this month that can't be explained by volume or acuity changes."</span>
+    <span class="a">Running statistical analysis across dozens of sites, controlling for multiple variables… <b>three facilities flagged</b> with unexplained LWBS increases.</span></div>
+    <p>This was the proactive analysis she'd never had time for, always too busy answering "what happened" to investigate "why." With reusable code already generated, she had a head start. <span class="who">She opened a new document and began drafting an investigative brief, doing the work she'd been hired to do.</span></p>`},
+   {t:'17:00',act:'Act Three',acth:'True North',tease:'The email every analyst needed to read.',
+    title:'The email every analyst needed to read', place:'5:00 PM · before logging off',
+    html:`<div class="email-flag">✦ The email every analyst needed to read</div>
+    <div class="email"><div class="email-inner">
+      <div class="email-bar"><div class="frm">From: Maya Patel &nbsp;·&nbsp; To: The Analytics Team</div><div class="subj">Questions We Can Finally Answer</div></div>
+      <div class="email-body">
+        <p>Team,</p>
+        <p>Today was different. I spent the morning worried that the Health Compass would make us obsolete. Instead, I spent the afternoon doing the most interesting analytical work I've done in years.</p>
+        <p>The system is handling the "what" questions, the ones we've answered a hundred times. That's freeing us to focus on the "why" and "what if" questions, the ones that actually change how we deliver healthcare.</p>
+        <div class="hope">But here's the important part: this only works if we're involved. The semantic models need maintenance. The data needs validation. The questions people ask reveal gaps we need to fill. And when the system can't answer something, that's when they need us, with the deep expertise no AI can replicate.</div>
+        <p>This is amplifying what we do best, enhancing our autonomy to do the work that matters.</p>
+        <p>See you tomorrow. I think we have some fascinating work ahead.</p>
+        <div class="sig">Maya</div>
+      </div>
+    </div></div>
+    <p style="margin-top:16px;">She hit send, then leaned back with something she hadn't felt in years: <span class="who">anticipation for tomorrow.</span></p>`}
+  ]}
+};
+
+const order=['minister','director','analyst'];
+const labels={minister:'Minister Chen',director:'Dr. Kowalski',analyst:'Maya Patel'};
+const iconKey={minister:'min',director:'dir',analyst:'ana'};
+
+/* ---------- clock: hands track scroll position continuously ---------- */
+const ticks=document.getElementById('ticks');
+for(let i=0;i<12;i++){const a=i*30*Math.PI/180;const x1=100+72*Math.sin(a),y1=100-72*Math.cos(a),x2=100+80*Math.sin(a),y2=100-80*Math.cos(a);ticks.innerHTML+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#003F87" stroke-width="${i%3===0?2.5:1.2}" opacity="${i%3===0?0.8:0.4}" stroke-linecap="round"/>`;}
+const hourHand=document.getElementById('hourHand'),minHand=document.getElementById('minHand');
+const dTime=document.getElementById('dTime'),dMer=document.getElementById('dMer'),dAct=document.getElementById('dAct');
+const parseMin=t=>{const [h,m]=t.split(':').map(Number);return h*60+m;};
+const DWELL=150; // px of scroll around each story moment where the clock holds steady
+
+function setHands(min,act){
+  // continuous mapping: forward scroll => clockwise, back => counter-clockwise (automatic)
+  hourHand.style.transform=`rotate(${min*0.5}deg)`;   // 360deg / 720min
+  minHand.style.transform=`rotate(${min*6}deg)`;       // 360deg / 60min
+  let h=Math.floor(min/60), mm=Math.round(min%60);
+  if(mm===60){mm=0;h+=1;}
+  let h12=h%12; if(h12===0)h12=12;
+  dTime.textContent=`${h12}:${String(mm).padStart(2,'0')}`;
+  dMer.textContent=(h%24)<12?'AM':'PM';
+  if(act)dAct.textContent=act;
+}
+let ticking=false;
+function onScroll(){ if(!ticking){requestAnimationFrame(updateClock);ticking=true;} }
+function updateClock(){
+  ticking=false;
+  const beats=[...document.querySelectorAll('#storyView.active .beat')];
+  if(!beats.length)return;
+  const target=window.innerHeight*0.5;
+  const arr=beats.map(b=>{const r=b.getBoundingClientRect();return{c:r.top+r.height/2,min:parseMin(b.dataset.time),act:b.dataset.act};});
+  let min,act;
+  if(target<=arr[0].c){min=arr[0].min;act=arr[0].act;}
+  else if(target>=arr[arr.length-1].c){min=arr[arr.length-1].min;act=arr[arr.length-1].act;}
+  else{
+    for(let i=0;i<arr.length-1;i++){
+      const a=arr[i],b=arr[i+1];
+      if(target>=a.c&&target<=b.c){
+        let half=Math.min(DWELL,(b.c-a.c)/2-1); if(half<0)half=0;
+        const lo=a.c+half, hi=b.c-half;
+        if(target<=lo){min=a.min;act=a.act;}
+        else if(target>=hi){min=b.min;act=b.act;}
+        else{const f=(target-lo)/(hi-lo); min=a.min+(b.min-a.min)*f; act=f<0.5?a.act:b.act;}
+        break;
+      }
+    }
+  }
+  setHands(min,act);
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+window.addEventListener('resize',onScroll);
+
+/* ---------- render a path ---------- */
+function openPath(key){
+  const p=PATHS[key];
+  document.getElementById('chooser').style.display='none';
+  document.getElementById('storyView').classList.add('active');
+  document.getElementById('switchbar').innerHTML=
+    order.map(k=>`<button class="${k===key?'on':''}" onclick="openPath('${k}')"><span class="mini">${ICONS[iconKey[k]]}</span>${labels[k]}</button>`).join('')
+    +`<button class="restart" onclick="restart()">↺ Start over</button>`;
+  let body=`<div class="phead"><div class="ic">${p.icon}</div><div class="role">${p.role}</div><h2>${p.name}</h2><div class="place">${p.place}</div></div>`;
+  let curAct=null;
+  p.beats.forEach(b=>{
+    if(b.act!==curAct){curAct=b.act;
+      body+=`<div class="act-divider"><div class="num">${b.act}</div><div class="title">${b.acth}</div><div class="tease">${b.tease}</div></div>`;}
+    const hh=(+b.t.split(':')[0]); let h12=hh%12||12; const mer=hh<12?'AM':'PM';
+    body+=`<div class="beat" data-time="${b.t}" data-act="${b.act}">
+      <div class="stamp"><span class="pin"></span>${h12}:${b.t.split(':')[1]} ${mer}</div>
+      <h4>${b.title}</h4><div class="place">${b.place}</div>${b.html}</div>`;
+  });
+  document.getElementById('pathBody').innerHTML=body;
+  // set initial clock to first moment
+  setHands(p.beats[0].min!==undefined?p.beats[0].min:parseMin(p.beats[0].t),p.beats[0].act);
+  // reveal animation
+  const beats=[...document.querySelectorAll('.beat')];
+  const ioReveal=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{rootMargin:'0px 0px -10% 0px'});
+  beats.forEach(b=>ioReveal.observe(b));
+  window.scrollTo({top:0,behavior:'smooth'});
+  // recompute clock after layout settles
+  requestAnimationFrame(updateClock);
+  setTimeout(updateClock,120); setTimeout(updateClock,500);
+}
+function restart(){
+  document.getElementById('storyView').classList.remove('active');
+  document.getElementById('chooser').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+/* authors modal */
+function openAuthors(){document.getElementById('authorsModal').classList.add('show');}
+function closeAuthors(){document.getElementById('authorsModal').classList.remove('show');}
+document.getElementById('authorsModal').addEventListener('click',e=>{if(e.target.id==='authorsModal')closeAuthors();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAuthors();});
+</script>
+
+
+<footer class="site-footer">
+  <div class="footer-inner">
+        <div class="footer-mark">
+            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ftrGrad" cx="50%" cy="42%" r="62%"><stop offset="0%" stop-color="#F8C13A"/><stop offset="55%" stop-color="#E8941F"/><stop offset="100%" stop-color="#D9663B"/></radialGradient></defs><circle cx="256" cy="256" r="225.28" fill="none" stroke="url(#ftrGrad)" stroke-width="13"/><circle cx="256" cy="256" r="199.68" fill="none" stroke="#E8941F" stroke-width="4" stroke-dasharray="6 9" opacity="0.75"/><polygon points="335,177 280.6,256 335,335 256,280.6 177,335 231.4,256 177,177 256,231.4" fill="#F8C13A" opacity="0.9"/><polygon points="256,75.8 294.2,217.8 436.2,256 294.2,294.2 256,436.2 217.8,294.2 75.8,256 217.8,217.8" fill="url(#ftrGrad)"/><circle cx="256" cy="256" r="23" fill="#FFF6E0"/></svg>
+            <span class="fwm"><span class="h">Health</span> <span class="c">Compass</span></span>
+        </div>
+        <p class="footer-statement">An internal initiative of Alberta Health Shared Services, built on Snowflake, helping approved users turn governed data into better decisions for Albertans. Outputs are AI-generated and require human review before use in decisions or reporting, and Health Compass is not a clinical system. Use is governed by the <a href="https://albertahealthservices.sharepoint.com/:w:/r/teams/M365TAlbertaHealthCompass/Shared%20Documents/%F0%9F%93%A2%20General/Health%20Compass%20Usage%20Charter.docx?d=w9d25834202bd42e3a27ab7ab227bd3c1&csf=1&web=1&e=fdLbov" target="_blank" rel="noopener">Health Compass Usage Charter</a>.</p>
+      </div>
+</footer>
+</body>
+</html>
