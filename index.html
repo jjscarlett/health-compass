@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alberta's Health Compass</title>
+    <meta name="description" content="Alberta's Health Compass: an AI-enabled analytics platform helping health system leaders ask questions in plain language and get fast, trustworthy answers from governed health data. For approved users only.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImdyYWQiIGN4PSI1MCUiIGN5PSI0MiUiIHI9IjYyJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGOEMxM0EiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI1NSUiIHN0b3AtY29sb3I9IiNFODk0MUYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjRDk2NjNCIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogIDwvZGVmcz4KICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjIyNS4yOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2dyYWQpIiBzdHJva2Utd2lkdGg9IjEyLjgiLz4KICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjE5OS42OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRTg5NDFGIiBzdHJva2Utd2lkdGg9IjQuMDk2IiBzdHJva2UtZGFzaGFycmF5PSI2LjE0NCA5LjIxNiIgb3BhY2l0eT0iMC43NSIvPgogIDxwb2x5Z29uIHBvaW50cz0iMzM1LjAsMTc3LjAgMjgwLjYsMjU2LjAgMzM1LjAsMzM1LjAgMjU2LjAsMjgwLjYgMTc3LjAsMzM1LjAgMjMxLjQsMjU2LjAgMTc3LjAsMTc3LjAgMjU2LjAsMjMxLjQiIGZpbGw9IiNGOEMxM0EiIG9wYWNpdHk9IjAuOSIvPgogIDxwb2x5Z29uIHBvaW50cz0iMjU2LjAsNzUuOCAyOTQuMiwyMTcuOCA0MzYuMiwyNTYuMCAyOTQuMiwyOTQuMiAyNTYuMCw0MzYuMiAyMTcuOCwyOTQuMiA3NS44LDI1Ni4wIDIxNy44LDIxNy44IiBmaWxsPSJ1cmwoI2dyYWQpIi8+CiAgPGNpcmNsZSBjeD0iMjU2IiBjeT0iMjU2IiByPSIyMy4wNCIgZmlsbD0iI0ZGRjZFMCIvPgogIDwvc3ZnPg==">
+
+    <!-- Social / link-preview cards -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Alberta's Health Compass">
+    <meta property="og:description" content="Ask any question about Alberta's health system and get fast, trustworthy answers you can act on. For approved users only.">
+    <meta property="og:site_name" content="Alberta Health Shared Services">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Alberta's Health Compass">
+    <meta name="twitter:description" content="Ask any question about Alberta's health system and get fast, trustworthy answers you can act on. For approved users only.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --sky-top:      #EEF5FC;
+    --sky-bottom:   #C8DFF5;
+    --blue:         #003F87;
+    --blue-mid:     #1A5EA8;
+    --blue-light:   #4A82C0;
+    --gold:         #E8A020;
+    --gold-dark:    #B87A10;
+    --navy:         #0D2545;
+    --text-muted:   #4A6A8A;
+    --text-subtle:  #8AAAC8;
+    --white:        #ffffff;
+    --card-bg:      rgba(255,255,255,0.82);
+    --card-border:  rgba(0,63,135,0.12);
+}
+
+html, body {
+    min-height: 100vh;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--navy);
+    background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
+    background-attachment: fixed;
+    overflow-x: clip;
+}
+body { display: flex; flex-direction: column; }
+
+/* ── Bokeh ── */
+.bokeh { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; animation: drift 28s infinite ease-in-out; }
+.bokeh:nth-child(1) { width: 340px; height: 340px; top: -60px; left: -80px;  background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 65%); animation-delay: 0s; }
+.bokeh:nth-child(2) { width: 220px; height: 220px; top: 8%;   right: -40px;  background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, transparent 65%); animation-delay: 5s; }
+.bokeh:nth-child(3) { width: 160px; height: 160px; top: 38%;  left: 62%;     background: radial-gradient(circle, rgba(255,255,255,0.45) 0%, transparent 65%); animation-delay: 10s; }
+.bokeh:nth-child(4) { width: 120px; height: 120px; top: 55%;  left: 8%;      background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 65%); animation-delay: 15s; }
+@keyframes drift { 0%,100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-28px) translateX(18px); } }
+
+/* ── Mountain landscape ── */
+.mountains { position: fixed; bottom: 0; left: 0; right: 0; height: 260px; pointer-events: none; z-index: 0; }
+.mountains svg { width: 100%; height: 100%; display: block; }
+
+/* ── Header ── */
+header { position: sticky; top: 0; z-index: 100; background: rgba(238,245,252,0.82); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,63,135,0.07); }
+.header-inner { max-width: 1120px; margin: 0 auto; padding: 15px 48px; display: flex; justify-content: space-between; align-items: center; }
+.compass-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+.compass-logo-icon { width: 32px; height: 32px; flex-shrink: 0; }
+.compass-logo-icon svg { width: 100%; height: 100%; }
+.compass-logo-text { font-family: Georgia, 'Times New Roman', serif; font-size: 19px; font-weight: 700; letter-spacing: -0.005em; line-height: 1; }
+.compass-logo-text .wm-health  { color: var(--navy); }
+.compass-logo-text .wm-compass { color: #E8941F; }
+nav { display: flex; gap: 36px; align-items: center; }
+nav button.nav-link { font-family: 'DM Sans', sans-serif; background: none; border: none; color: var(--text-muted); font-size: 14px; font-weight: 400; transition: color 0.2s; cursor: pointer; padding: 0; }
+nav button.nav-link:hover { color: var(--blue); }
+nav button.nav-link:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 3px; }
+
+/* ── Main ── */
+main { position: relative; z-index: 10; max-width: 1120px; margin: 48px auto 0; padding: 0 48px; }
+
+/* ── Hero split (launch left, story rail right) ── */
+.hero-split { display: grid; grid-template-columns: 1.9fr 1fr; gap: 34px; align-items: stretch; }
+.hero-left { min-width: 0; }
+.rail { position: relative; overflow: hidden; color: #fff; border-radius: 20px; display: flex; flex-direction: column; justify-content: center; padding: 38px 34px; background: linear-gradient(180deg, #19568F 0%, #2E72AE 38%, #4E8BC2 64%, #86B8DE 100%); box-shadow: 0 18px 48px rgba(13,37,69,0.26); }
+.rail::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 22%, rgba(255,244,210,0.55), transparent 48%); pointer-events: none; }
+.rail-mtn { position: absolute; left: 0; right: 0; bottom: 0; height: 130px; }
+.rail-mtn svg { width: 100%; height: 100%; display: block; }
+.rail-inner { position: relative; z-index: 2; }
+.rail-glow { width: 72px; height: 72px; margin-bottom: 20px; filter: drop-shadow(0 0 14px rgba(255,224,138,0.55)); }
+.rail-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #F8C13A; margin-bottom: 12px; }
+.rail-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: #F8C13A; }
+.rail h2 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.16; margin-bottom: 11px; color: #fff; }
+.rail h2 em { font-style: italic; color: #F8C13A; }
+.rail p { font-size: 13.5px; line-height: 1.6; color: rgba(255,255,255,0.80); margin-bottom: 20px; max-width: 290px; }
+.rail-icons { display: flex; margin-bottom: 22px; }
+.rail-icons .ti { width: 41px; height: 41px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); display: flex; align-items: center; justify-content: center; margin-left: -9px; }
+.rail-icons .ti:first-child { margin-left: 0; }
+.rail-icons .ti svg { width: 24px; height: 24px; }
+.rail-cta { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: var(--navy); font-size: 14.5px; font-weight: 600; text-decoration: none; padding: 14px 26px; border-radius: 50px; box-shadow: 0 8px 24px rgba(0,0,0,0.26); transition: transform 0.15s, box-shadow 0.2s; align-self: flex-start; }
+.rail-cta:hover { transform: translateY(-1px); box-shadow: 0 12px 30px rgba(0,0,0,0.32); }
+.rail-cta svg { width: 16px; height: 16px; }
+
+.eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--gold-dark);
+    background: rgba(232,160,32,0.12);
+    border: 1px solid rgba(232,160,32,0.28);
+    padding: 6px 13px; border-radius: 50px;
+    margin-bottom: 22px;
+}
+.eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+h1 {
+    font-size: 56px; font-weight: 400; line-height: 1.12; letter-spacing: -0.025em;
+    margin-bottom: 16px; color: var(--navy);
+}
+h1 .h1-serif {
+    font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-weight: 400;
+    display: block; font-size: 66px; color: var(--blue); line-height: 1.08;
+}
+h1 .h1-serif::after { content: ''; display: block; width: 72px; height: 3px; background: var(--gold); border-radius: 2px; margin-top: 8px; margin-bottom: 4px; }
+
+.subtitle { color: var(--text-muted); font-size: 16px; font-weight: 400; line-height: 1.55; margin-bottom: 24px; max-width: 680px; }
+
+/* ── Hero panel (Option B) ── */
+.hero-panel {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 26px 30px;
+    box-shadow: 0 10px 38px rgba(0,63,135,0.12), 0 1px 4px rgba(0,63,135,0.06);
+}
+.hero-top { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+.launch-btn {
+    display: inline-flex; align-items: center; gap: 11px;
+    background: var(--blue); color: var(--white);
+    font-family: 'DM Sans', sans-serif; font-size: 15.5px; font-weight: 600;
+    text-decoration: none; padding: 15px 28px; border-radius: 50px;
+    box-shadow: 0 6px 20px rgba(0,63,135,0.25);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    flex-shrink: 0;
+}
+.launch-btn:hover { background: var(--blue-mid); transform: translateY(-1px); box-shadow: 0 8px 26px rgba(0,63,135,0.30); }
+.launch-btn:active { transform: translateY(0); }
+.launch-btn svg { width: 18px; height: 18px; }
+
+.sso-line { font-size: 12.5px; color: var(--text-muted); line-height: 1.5; flex: 1; min-width: 230px; padding-left: 26px; border-left: 1px solid var(--card-border); }
+.sso-line strong { color: var(--gold-dark); font-weight: 600; }
+
+.access-line {
+    font-size: 12.5px; color: var(--text-muted); line-height: 1.55;
+    margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--card-border);
+}
+.access-line p { margin: 0; }
+.access-line .access-sub { color: var(--text-subtle); margin-top: 3px; }
+.access-line a { color: var(--blue); font-weight: 600; text-decoration: none; }
+.access-line a:hover { text-decoration: underline; }
+
+/* ── Value row (borderless) ── */
+.values { display: flex; gap: 40px; margin-top: 44px; flex-wrap: wrap; }
+.value { flex: 1; min-width: 200px; display: flex; gap: 14px; align-items: flex-start; }
+.value-icon { width: 32px; height: 32px; flex-shrink: 0; margin-top: 1px; }
+.value-icon svg { width: 100%; height: 100%; }
+.value h3 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; letter-spacing: -0.01em; }
+.value p { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; }
+
+/* ── Footer ── */
+footer { position: relative; z-index: 10; margin-top: auto; }
+footer::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(238,245,252,0) 0%, rgba(238,245,252,0.75) 38%, rgba(238,245,252,0.92) 100%); pointer-events: none; }
+.footer-inner { max-width: 720px; margin: 0 auto; padding: 72px 28px 42px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 13px; }
+.footer-mark { display: flex; align-items: center; gap: 9px; }
+.footer-mark svg { width: 26px; height: 26px; }
+.footer-mark .fwm { font-family: Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: 700; line-height: 1; }
+.footer-mark .fwm .h { color: var(--navy); }
+.footer-mark .fwm .c { color: #E8941F; }
+.footer-statement { font-size: 12px; color: var(--text-muted); line-height: 1.65; max-width: 660px; }
+.footer-statement a { color: var(--blue); font-weight: 600; text-decoration: none; cursor: pointer; }
+.footer-statement a:hover { text-decoration: underline; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .header-inner { padding: 14px 24px; }
+    nav { gap: 20px; }
+    main { padding: 0 24px; margin-top: 28px; }
+    h1 { font-size: 36px; }
+    h1 .h1-serif { font-size: 44px; }
+    .hero-split { grid-template-columns: 1fr; gap: 22px; }
+    .sso-line { border-left: none; padding-left: 0; }
+    .rail { padding: 32px 26px; }
+    .values { flex-direction: column; gap: 22px; margin-top: 34px; }
+    .footer-inner { padding: 44px 24px 28px; }
+    .mountains { height: 160px; }
+}
+
+/* ── Modals ── */
+.info-overlay { position: fixed; inset: 0; background: rgba(13,37,69,0.55); display: none; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(6px); }
+.info-overlay.show { display: flex; }
+.info-modal { background: var(--white); border-radius: 14px; max-width: 660px; width: 90%; max-height: 85vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 24px 72px rgba(13,37,69,0.22); animation: slideIn 0.22s ease-out; }
+@keyframes slideIn { from { transform: translateY(-14px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.info-modal-header { background: var(--blue); padding: 16px 22px; display: flex; justify-content: space-between; align-items: center; }
+.info-modal-header h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 19px; font-weight: 400; color: white; margin: 0; }
+.info-modal-header p { font-size: 12.5px; margin: 3px 0 0; color: rgba(255,255,255,0.75); }
+.close-popup { background: none; border: none; color: rgba(255,255,255,0.7); font-size: 22px; cursor: pointer; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 6px; transition: all 0.2s; }
+.close-popup:hover { background: rgba(255,255,255,0.15); color: white; }
+.info-modal-body { padding: 20px 22px; overflow-y: auto; flex: 1; min-height: 0; }
+.info-modal-body::-webkit-scrollbar { width: 4px; }
+.info-modal-body::-webkit-scrollbar-thumb { background: #C8DFF5; border-radius: 2px; }
+.info-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+.info-card { position: relative; background: #F4F9FE; padding: 18px; border-radius: 10px; border-left: 3px solid var(--gold); transition: transform 0.18s ease, box-shadow 0.18s ease; }
+.info-card:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,63,135,0.10); }
+.info-card-icon { width: 30px; height: 30px; margin-bottom: 11px; }
+.info-card-icon svg { width: 100%; height: 100%; display: block; }
+.info-card h3 { color: var(--navy); font-size: 13.5px; font-weight: 600; margin-bottom: 5px; }
+.info-card p { color: var(--text-muted); font-size: 12.5px; line-height: 1.55; margin: 0; }
+.info-card.soon { border-left-color: #C4D4E5; }
+.info-card.soon .info-card-icon { opacity: 0.5; }
+.info-card.soon h3 { color: var(--text-muted); }
+.status { display: inline-flex; align-items: center; gap: 5px; font-size: 9px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 8px; border-radius: 50px; position: absolute; top: 14px; right: 14px; }
+.status.live { background: rgba(34,139,84,0.12); color: #1B7A45; }
+.status.live .ld { width: 6px; height: 6px; border-radius: 50%; background: #21A35A; box-shadow: 0 0 0 3px rgba(33,163,90,0.20); }
+.status.soon { background: #E7EEF6; color: #6A86A4; }
+.step-card { background: #F4F9FE; border: 1px solid #E0EDF8; padding: 14px 16px; border-radius: 10px; margin-bottom: 10px; display: flex; gap: 14px; }
+.step-card:last-child { margin-bottom: 0; }
+.step-icon-img { width: 36px; height: 36px; margin-bottom: 8px; display: block; }
+.step-number { background: var(--blue); color: white; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+.step-ic { background: var(--blue); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 3px 9px rgba(0,63,135,0.22); }
+.step-ic svg { width: 19px; height: 19px; }
+.sso-emph { color: var(--gold-dark); font-weight: 600; }
+.verified-emph { color: #1B7A45; font-weight: 600; }
+.ru-intro { background: rgba(0,63,135,0.04); border-left: 3px solid var(--gold); border-radius: 0 10px 10px 0; padding: 16px 18px; margin-bottom: 18px; }
+.ru-intro p { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 15px; line-height: 1.55; color: var(--navy); margin: 0; }
+.ru-lead { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
+.ru-list { list-style: none; margin: 0; padding: 0; }
+.ru-list li { position: relative; padding: 0 0 13px 26px; margin-bottom: 13px; border-bottom: 1px solid #EDF3FA; }
+.ru-list li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.ru-list li::before { content: ''; position: absolute; left: 4px; top: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px rgba(232,160,32,0.16); }
+.ru-t { display: block; font-size: 13.5px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+.ru-d { display: block; font-size: 12.5px; color: var(--text-muted); line-height: 1.55; }
+.step-content h3 { color: var(--gold-dark); font-size: 9.5px; font-weight: 700; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+.step-content h4 { color: var(--navy); font-size: 13.5px; font-weight: 600; margin-bottom: 3px; }
+.step-content p { color: var(--text-muted); font-size: 12.5px; line-height: 1.5; margin-bottom: 3px; }
+.step-content .example { color: var(--text-subtle); font-size: 11.5px; font-style: italic; margin: 2px 0 0; }
+.info-footer { padding: 12px 22px; border-top: 1px solid #E4EDF5; background: #F7FAFE; display: flex; align-items: center; gap: 10px; }
+.info-footer-icon { color: var(--gold); display: inline-flex; align-items: center; }
+.info-footer-icon svg { width: 17px; height: 17px; display: block; }
+.info-footer-text { color: var(--text-muted); font-size: 12.5px; }
+.info-modal-close-btn { padding: 8px 18px; background: var(--blue); color: white; border: none; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; margin-left: auto; transition: background 0.2s; }
+.info-modal-close-btn:hover { background: var(--blue-mid); }
+@media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } .step-card { flex-direction: column; } .info-modal { width: 95%; max-height: 90vh; } }
+
+/* ── Story (Charting the Course) styles defined above ── */
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Bokeh light orbs -->
+    <div class="bokeh"></div>
+    <div class="bokeh"></div>
+    <div class="bokeh"></div>
+    <div class="bokeh"></div>
+
+    <!-- Mountain landscape -->
+    <div class="mountains" aria-hidden="true">
+        <svg viewBox="0 0 1440 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 260 L0 155 L60 118 L110 140 L170 95 L230 125 L290 80 L350 112 L410 68 L470 100 L530 58 L590 92 L650 45 L710 82 L770 38 L830 75 L890 50 L950 88 L1010 55 L1070 90 L1130 60 L1190 95 L1250 65 L1310 98 L1380 72 L1440 88 L1440 260 Z" fill="#003F87" opacity="0.13"/>
+            <path d="M0 260 L0 178 L80 155 L140 168 L200 142 L270 158 L330 130 L400 148 L460 120 L530 140 L600 112 L660 132 L730 105 L800 128 L870 108 L940 130 L1010 115 L1080 132 L1150 118 L1220 135 L1300 120 L1370 135 L1440 125 L1440 260 Z" fill="#003F87" opacity="0.30"/>
+            <path d="M0 260 L0 205 L55 192 L100 200 L155 182 L200 195 L255 175 L305 188 L360 170 L415 185 L470 165 L525 180 L580 162 L635 178 L690 160 L745 175 L800 158 L860 173 L920 160 L980 172 L1040 158 L1100 170 L1160 156 L1220 168 L1290 158 L1360 165 L1440 158 L1440 260 Z" fill="#003F87" opacity="0.62"/>
+            <path d="M0 260 Q80 222 180 232 Q280 242 400 224 Q520 208 640 222 Q760 236 880 218 Q1000 202 1120 218 Q1240 232 1340 218 Q1390 212 1440 216 L1440 260 Z" fill="#4E8A72"/>
+            <path d="M0 260 Q120 242 240 248 Q360 254 480 244 Q600 236 720 244 Q840 252 960 242 Q1080 234 1200 242 Q1320 250 1440 242 L1440 260 Z" fill="#DCAA38"/>
+        </svg>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <div class="header-inner">
+        <div class="compass-logo">
+            <div class="compass-logo-icon">
+                <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="markGrad" cx="50%" cy="42%" r="62%">
+                            <stop offset="0%" stop-color="#F8C13A"/>
+                            <stop offset="55%" stop-color="#E8941F"/>
+                            <stop offset="100%" stop-color="#D9663B"/>
+                        </radialGradient>
+                    </defs>
+                    <circle cx="256" cy="256" r="225.28" fill="none" stroke="url(#markGrad)" stroke-width="12.8"/>
+                    <circle cx="256" cy="256" r="199.68" fill="none" stroke="#E8941F" stroke-width="4.096" stroke-dasharray="6.144 9.216" opacity="0.75"/>
+                    <polygon points="335.0,177.0 280.6,256.0 335.0,335.0 256.0,280.6 177.0,335.0 231.4,256.0 177.0,177.0 256.0,231.4" fill="#F8C13A" opacity="0.9"/>
+                    <polygon points="256.0,75.8 294.2,217.8 436.2,256.0 294.2,294.2 256.0,436.2 217.8,294.2 75.8,256.0 217.8,217.8" fill="url(#markGrad)"/>
+                    <circle cx="256" cy="256" r="23.04" fill="#FFF6E0"/>
+                </svg>
+            </div>
+            <span class="compass-logo-text"><span class="wm-health">Health</span> <span class="wm-compass">Compass</span></span>
+        </div>
+        <nav>
+            <button type="button" class="nav-link" onclick="openPopup('howItWorksPopup')">How it Works</button>
+            <button type="button" class="nav-link" onclick="openPopup('dataSourcesPopup')">Data Sources</button>
+            <button type="button" class="nav-link" onclick="window.location.href='charting-the-course.html'">The Story</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        <div class="hero-split">
+            <div class="hero-left">
+                <span class="eyebrow"><span class="dot"></span>For approved users only</span>
+                <h1>
+                    <span class="h1-serif">Your True North</span>
+                    for Alberta Healthcare
+                </h1>
+                <p class="subtitle">Ask any question about Alberta's health system and get fast, trustworthy answers you can act on. Drawing on governed data sources from across the health system.</p>
+
+                <!-- Hero panel -->
+                <div class="hero-panel">
+                    <div class="hero-top">
+                        <a class="launch-btn" href="https://ai.snowflake.com/ahsorg/ahsprod" target="_blank" rel="noopener">
+                            Launch Health Compass
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                        <p class="sso-line">When prompted to sign in, click the <strong>Sign in using Single Sign-On</strong> button. A username and password will not work.</p>
+                    </div>
+                    <div class="access-line">
+                        <p>No access yet? Health system employees can <a href="https://teams.microsoft.com/l/entity/81fef3a6-72aa-4648-a763-de824aeafb7d/_djb2_msteams_prefix_765039569?context=%7B%22channelId%22%3A%2219%3AXLKrdw8h-34jPKt1b6PFGFiIVzLABgse3x3Lj-J4nuE1%40thread.tacv2%22%7D&amp;tenantId=11930486-b470-48f2-9166-3f0cc3087727" target="_blank" rel="noopener">express interest</a>.</p>
+                        <p class="access-sub">Access is not available to non-health system parties at this time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story rail -->
+            <div class="rail" id="story">
+                <div class="rail-mtn"><svg viewBox="0 0 400 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 130 L0 58 L50 42 L100 54 L150 36 L200 50 L250 38 L300 52 L350 40 L400 50 L400 130Z" fill="#1C4E7E" opacity="0.5"/><path d="M0 130 L0 80 L60 70 L120 78 L180 64 L240 76 L300 66 L360 78 L400 70 L400 130Z" fill="#143E66" opacity="0.85"/><path d="M0 130 Q100 96 200 106 Q300 116 400 102 L400 130Z" fill="#4E8A72"/><path d="M0 130 Q120 118 240 124 Q330 128 400 120 L400 130Z" fill="#DCAA38"/></svg></div>
+                <div class="rail-inner">
+                    <svg class="rail-glow" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="railGrad" cx="50%" cy="42%" r="62%"><stop offset="0%" stop-color="#FFE08A"/><stop offset="55%" stop-color="#F8C13A"/><stop offset="100%" stop-color="#E8941F"/></radialGradient></defs><circle cx="256" cy="256" r="225" fill="none" stroke="url(#railGrad)" stroke-width="13"/><circle cx="256" cy="256" r="200" fill="none" stroke="#F8C13A" stroke-width="4" stroke-dasharray="6 9" opacity="0.8"/><polygon points="335,177 280.6,256 335,335 256,280.6 177,335 231.4,256 177,177 256,231.4" fill="#FFE08A" opacity="0.9"/><polygon points="256,75.8 294.2,217.8 436.2,256 294.2,294.2 256,436.2 217.8,294.2 75.8,256 217.8,217.8" fill="url(#railGrad)"/><circle cx="256" cy="256" r="23" fill="#FFF6E0"/></svg>
+                    <div class="rail-eyebrow"><span class="dot"></span>Charting the Course</div>
+                    <h2>One ordinary morning, <em>everything changes.</em></h2>
+                    <p>Three colleagues. Three questions. Follow the day the data finally became theirs.</p>
+                    <div class="rail-icons">
+                        <span class="ti"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17 L22 7 L37 17 Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><circle cx="22" cy="13.5" r="1.8" fill="#F8C13A"/><line x1="8" y1="17" x2="36" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/><g stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="12" y1="20" x2="12" y2="33"/><line x1="18.7" y1="20" x2="18.7" y2="33"/><line x1="25.3" y1="20" x2="25.3" y2="33"/><line x1="32" y1="20" x2="32" y2="33"/></g><line x1="9" y1="33" x2="35" y2="33" stroke="#fff" stroke-width="2" stroke-linecap="round"/><line x1="6" y1="37" x2="38" y2="37" stroke="#F8C13A" stroke-width="2" stroke-linecap="round"/></svg></span>
+                        <span class="ti"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="13" cy="8" r="2.2" stroke="#fff" stroke-width="2"/><circle cx="21" cy="8" r="2.2" stroke="#fff" stroke-width="2"/><path d="M13 10.2 C13 19 17.5 20 17.5 25" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M21 10.2 C21 19 17.5 20 17.5 25" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M17.5 25 C17.5 33 25 35 29 35" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="31" cy="34.5" r="4.3" stroke="#fff" stroke-width="2"/><circle cx="31" cy="34.5" r="1.7" fill="#F8C13A"/></svg></span>
+                        <span class="ti"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="9" width="30" height="22" rx="3" stroke="#fff" stroke-width="2"/><path d="M13 25 L18 19 L23 23 L31 14" stroke="#F8C13A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 37 H28 M22 31 V37" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+                    </div>
+                    <a class="rail-cta" href="charting-the-course.html">Experience the story<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Value row -->
+        <div class="values">
+            <div class="value">
+                <div class="value-icon">
+                    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 4 L36 10 V21 C36 30 30 36 22 40 C14 36 8 30 8 21 V10 Z" stroke="#003F87" stroke-width="2" fill="none"/>
+                        <path d="M16 22 l4 4 8-9" stroke="#E8A020" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3>Trusted data</h3>
+                    <p>Curated, standardized, and governed, so a number means the same thing no matter who asks.</p>
+                </div>
+            </div>
+            <div class="value">
+                <div class="value-icon">
+                    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 4 L11 24 H21 L19 40 L33 18 H22 Z" stroke="#003F87" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                        <path d="M5 12 H13" stroke="#E8A020" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M4 20 H10" stroke="#E8A020" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3>Faster decisions</h3>
+                    <p>Answers in seconds, with follow-up questions that replace days of report backlog.</p>
+                </div>
+            </div>
+            <div class="value">
+                <div class="value-icon">
+                    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="11" y="19" width="22" height="17" rx="3" stroke="#003F87" stroke-width="2"/>
+                        <path d="M15 19 V14 a7 7 0 0 1 14 0 V19" stroke="#003F87" stroke-width="2" fill="none"/>
+                        <circle cx="22" cy="27" r="2.4" fill="#E8A020"/>
+                        <path d="M22 29 V32" stroke="#E8A020" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3>Secure access</h3>
+                    <p>Restricted to approved users, governed by the Usage Charter, with every query logged.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-mark">
+            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ftrGrad" cx="50%" cy="42%" r="62%"><stop offset="0%" stop-color="#F8C13A"/><stop offset="55%" stop-color="#E8941F"/><stop offset="100%" stop-color="#D9663B"/></radialGradient></defs><circle cx="256" cy="256" r="225.28" fill="none" stroke="url(#ftrGrad)" stroke-width="13"/><circle cx="256" cy="256" r="199.68" fill="none" stroke="#E8941F" stroke-width="4" stroke-dasharray="6 9" opacity="0.75"/><polygon points="335,177 280.6,256 335,335 256,280.6 177,335 231.4,256 177,177 256,231.4" fill="#F8C13A" opacity="0.9"/><polygon points="256,75.8 294.2,217.8 436.2,256 294.2,294.2 256,436.2 217.8,294.2 75.8,256 217.8,217.8" fill="url(#ftrGrad)"/><circle cx="256" cy="256" r="23" fill="#FFF6E0"/></svg>
+            <span class="fwm"><span class="h">Health</span> <span class="c">Compass</span></span>
+        </div>
+        <p class="footer-statement">An internal initiative of Alberta Health Shared Services, built on Snowflake, helping approved users turn governed data into better decisions for Albertans. Outputs are AI-generated and require human review before use in decisions or reporting, and Health Compass is not a clinical system. See our <a onclick="openPopup('responsibleUsePopup')">Responsible Use principles</a>.</p>
+      </div>
+    </footer>
+
+    <!-- How It Works Popup -->
+    <div class="info-overlay" id="howItWorksPopup">
+        <div class="info-modal">
+            <div class="info-modal-header">
+                <div><h2>How It Works</h2><p>From sign-in to insight in a few steps</p></div>
+                <button class="close-popup" onclick="closePopup('howItWorksPopup')" aria-label="Close">&#x2715;</button>
+            </div>
+            <div class="info-modal-body">
+                <div class="step-card">
+                    <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="4.5" stroke="#fff" stroke-width="1.8"/><path d="M12.2 12.2 L19 19 M16.5 19 H19 V16.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="9" r="1.4" fill="#F8C13A"/></svg></div>
+                    <div class="step-content">
+                        <h3>Step 1</h3>
+                        <h4>Sign in using Single Sign-On</h4>
+                        <p>Launch the Health Compass and, when prompted, click the <strong class="sso-emph">Sign in using Single Sign-On</strong> button. Username and password sign-in will not work.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6 a2 2 0 0 1 2-2 H18 a2 2 0 0 1 2 2 V14 a2 2 0 0 1-2 2 H10 l-4 4 V16 H6 a2 2 0 0 1-2-2 Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 9 H16 M8 12 H13" stroke="#F8C13A" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+                    <div class="step-content">
+                        <h3>Step 2</h3>
+                        <h4>Ask your question</h4>
+                        <p>Ask any question about Alberta's health system in plain English. No technical knowledge required.</p>
+                        <p class="example">"Compare median ED wait times between Edmonton and Calgary by CTAS level."</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 L19 6 V11 C19 15.5 16 18.7 12 20 C8 18.7 5 15.5 5 11 V6 Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 11.5 l2 2 4-4.5" stroke="#F8C13A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                    <div class="step-content">
+                        <h3>Step 3</h3>
+                        <h4>Explore &amp; verify</h4>
+                        <p>Ask follow-ups, filter, and export. Look for the <strong class="verified-emph">verified query badge</strong> for metrics that match approved definitions. Always apply human review before acting on results.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="info-footer">
+                <span class="info-footer-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 12 C5 7 9 5 12 5 s7 2 9.5 7 C19 17 15 19 12 19 S5 17 2.5 12 Z" stroke="#003F87" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke="#003F87" stroke-width="1.6"/><circle cx="12" cy="12" r="1.3" fill="#E8A020"/></svg></span>
+                <span class="info-footer-text">Always verify AI-generated results before acting</span>
+                <button class="info-modal-close-btn" onclick="closePopup('howItWorksPopup')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Sources Popup -->
+    <div class="info-overlay" id="dataSourcesPopup">
+        <div class="info-modal">
+            <div class="info-modal-header">
+                <div><h2>Data Sources</h2><p>Live now, with more coming online</p></div>
+                <button class="close-popup" onclick="closePopup('dataSourcesPopup')" aria-label="Close">&#x2715;</button>
+            </div>
+            <div class="info-modal-body">
+                <div class="info-grid">
+                    <div class="info-card"><span class="status live"><span class="ld"></span>Live</span><div class="info-card-icon"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 38 V14 L22 7 L36 14 V38" stroke="#003F87" stroke-width="2" stroke-linejoin="round"/><path d="M4 38 H40" stroke="#003F87" stroke-width="2" stroke-linecap="round"/><path d="M22 16 V24 M18 20 H26" stroke="#E8A020" stroke-width="2.2" stroke-linecap="round"/><path d="M17 38 V30 H27 V38" stroke="#003F87" stroke-width="2" stroke-linejoin="round"/></svg></div><h3>Patient Activity</h3><p>Admissions, discharges, transfers, and emergency department visits.</p></div>
+                    <div class="info-card soon"><span class="status soon">Coming soon</span><div class="info-card-icon"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 32 a15 15 0 0 1 30 0" stroke="#003F87" stroke-width="2" stroke-linecap="round"/><path d="M7 32 H37" stroke="#003F87" stroke-width="2" stroke-linecap="round"/><path d="M22 32 L30 19" stroke="#E8A020" stroke-width="2.4" stroke-linecap="round"/><circle cx="22" cy="32" r="2.6" fill="#003F87"/></svg></div><h3>System Capacity</h3><p>Bed occupancy, theatre utilization, staffing ratios, and wait times.</p></div>
+                    <div class="info-card soon"><span class="status soon">Coming soon</span><div class="info-card-icon"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="22" cy="13" rx="13" ry="5" stroke="#003F87" stroke-width="2"/><path d="M9 13 V31 c0 2.8 5.8 5 13 5 s13-2.2 13-5 V13" stroke="#003F87" stroke-width="2"/><path d="M9 22 c0 2.8 5.8 5 13 5 s13-2.2 13-5" stroke="#003F87" stroke-width="2" opacity="0.5"/><path d="M22 9 V17 M19.5 11 h3.2 a1.8 1.8 0 0 1 0 3.6 h-1.4 a1.8 1.8 0 0 0 0 3.6 h3.2" stroke="#E8A020" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Clinical Costing</h3><p>Cost per weighted activity, resource use, and procedure-level costing.</p></div>
+                    <div class="info-card soon"><span class="status soon">Coming soon</span><div class="info-card-icon"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 36 C13 30 6 24 6 16.5 A8.5 8.5 0 0 1 22 12 A8.5 8.5 0 0 1 38 16.5 C38 24 31 30 22 36 Z" stroke="#003F87" stroke-width="2" stroke-linejoin="round"/><path d="M12 22 H18 L20.5 17 L24 27 L26.5 22 H32" stroke="#E8A020" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Quality &amp; Outcomes</h3><p>Readmission rates, length of stay, and complication rates.</p></div>
+                    <div class="info-card soon"><span class="status soon">Coming soon</span><div class="info-card-icon"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="15" r="5" stroke="#003F87" stroke-width="2"/><path d="M7 35 c0-6 4.5-9 9-9 s9 3 9 9" stroke="#003F87" stroke-width="2" stroke-linecap="round"/><circle cx="30" cy="17" r="4" stroke="#E8A020" stroke-width="2"/><path d="M27 35 c0-5.5 3.5-8.5 8-8.5 s7 3 7 8" stroke="#E8A020" stroke-width="2" stroke-linecap="round" opacity="0.95"/></svg></div><h3>Workforce</h3><p>FTE counts, agency usage, and sick leave rates.</p></div>
+                    <div class="info-card soon"><span class="status soon">Coming soon</span><div class="info-card-icon"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 6 V18 L10 33 a3 3 0 0 0 2.7 4.5 H31.3 A3 3 0 0 0 34 33 L25 18 V6" stroke="#003F87" stroke-width="2" stroke-linejoin="round"/><path d="M16 6 H28" stroke="#003F87" stroke-width="2" stroke-linecap="round"/><path d="M14.5 27 H29.5" stroke="#E8A020" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="32" r="1.6" fill="#E8A020"/><circle cx="25" cy="31" r="1.3" fill="#E8A020"/></svg></div><h3>Clinical Support Services</h3><p>Volumes, turnaround times, and utilization.</p></div>
+                </div>
+            </div>
+            <div class="info-footer">
+                <span class="info-footer-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.5 L4 6 V11.5 C4 16.2 7.4 19.6 12 21.2 C16.6 19.6 20 16.2 20 11.5 V6 Z" stroke="#003F87" stroke-width="1.6"/><path d="M9 12 l2.2 2.2 L15 10" stroke="#E8A020" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="info-footer-text">Patient Activity is live now; coverage expands as new agents come online</span>
+                <button class="info-modal-close-btn" onclick="closePopup('dataSourcesPopup')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Responsible Use Popup -->
+    <div class="info-overlay" id="responsibleUsePopup">
+        <div class="info-modal">
+            <div class="info-modal-header">
+                <div><h2>Responsible Use</h2><p>An act of professional responsibility</p></div>
+                <button class="close-popup" onclick="closePopup('responsibleUsePopup')" aria-label="Close">&#x2715;</button>
+            </div>
+            <div class="info-modal-body">
+                <div class="ru-intro">
+                    <p>Alberta's Health Compass provides powerful insight into our patients, our capacity, and our costs; but no tool can substitute for human judgment, ethical intent, or professional integrity. Every query, every analysis, and every decision made using the Health Compass is an act of professional responsibility. We are accountable not just for what the data shows, but for why we asked and what we do with the answer.</p>
+                </div>
+                <p class="ru-lead">Responsible use is a commitment every user makes when granted access. These principles are not a checklist; they are habits of mind to carry into every query.</p>
+                <ul class="ru-list">
+                    <li><span class="ru-t">Start with a question, not a conclusion</span><span class="ru-d">Define your question first to avoid confirmation bias and selective reporting.</span></li>
+                    <li><span class="ru-t">Report the full picture</span><span class="ru-d">Include all relevant findings, even those that contradict your hypothesis.</span></li>
+                    <li><span class="ru-t">Be transparent about your starting question</span><span class="ru-d">Share the question you aimed to answer so others can judge scope and interpretation.</span></li>
+                    <li><span class="ru-t">Self-critique before presenting</span><span class="ru-d">Check for contradicting metrics, consider whether you would present the same if results were unfavorable, and ensure proper context.</span></li>
+                    <li><span class="ru-t">Acknowledge limitations</span><span class="ru-d">Clearly note data gaps, lags, or caveats as part of the analysis.</span></li>
+                    <li><span class="ru-t">Seek a second set of eyes</span><span class="ru-d">Have a peer or data steward review key analyses for accuracy and balance.</span></li>
+                    <li><span class="ru-t">Usage is auditable</span><span class="ru-d">Remember your queries and activity will be reviewed to support learning and accountability.</span></li>
+                    <li><span class="ru-t">Raise concerns</span><span class="ru-d">Investigate unexpected results and consult a data steward when unsure about appropriate use.</span></li>
+                </ul>
+            </div>
+            <div class="info-footer">
+                <span class="info-footer-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 12 C5 7 9 5 12 5 s7 2 9.5 7 C19 17 15 19 12 19 S5 17 2.5 12 Z" stroke="#003F87" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke="#003F87" stroke-width="1.6"/><circle cx="12" cy="12" r="1.3" fill="#E8A020"/></svg></span>
+                <span class="info-footer-text">AI-generated outputs are a starting point, not a final answer</span>
+                <button class="info-modal-close-btn" onclick="closePopup('responsibleUsePopup')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function openPopup(id)  { document.getElementById(id).classList.add('show'); }
+    function closePopup(id) { document.getElementById(id).classList.remove('show'); }
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('info-overlay')) e.target.classList.remove('show');
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') document.querySelectorAll('.info-overlay.show').forEach(el => el.classList.remove('show'));
+    });
+    </script>
+</body>
+</html>
